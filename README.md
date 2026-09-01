@@ -55,22 +55,48 @@ Nastaliq on purpose (h2ogo-app commit `a3e05ea`).
 The Urdu page is **written, not translated**, following the app's own rule:
 everyday English loanwords in Urdu script, colloquial verbs over literary ones.
 
-## Deploying — the DNS step is the dangerous one
+## Deploying — GitHub Pages, and why not Cloudflare
 
-`app-api.code-extreme.com` is **the live pilot API** for SupplyO. Cloudflare
-Pages needs a root-domain record, which in practice means moving nameservers to
-Cloudflare — and that is how you accidentally take the backend offline.
+Hosted on **GitHub Pages**, deployed by `.github/workflows/deploy.yml` on every
+push to `main`. `public/CNAME` holds the apex domain.
 
-Order matters:
+This was originally planned for Cloudflare Pages. It moved, for one reason:
+Cloudflare Pages serves an **apex** domain only if the domain uses Cloudflare's
+own nameservers, so publishing this site would have meant migrating DNS for
+`code-extreme.com` — and `app-api.code-extreme.com` is **the live pilot API for
+SupplyO**. A nameserver migration that drops or mistypes one subdomain record
+takes the backend down, and it presents as an app bug rather than a DNS mistake.
 
-1. Add the domain in Cloudflare; let it scan existing DNS records.
-2. **Verify `app-api` and `supplyo-api` were both imported** and point at
-   `34.180.47.72`. Do not skip this.
-3. Flip nameservers at the registrar.
-4. Confirm the API survived:
-   `curl -s -o /dev/null -w '%{http_code}' https://app-api.code-extreme.com/actuator/health`
-   must print `200`.
-5. Only then attach the Pages custom domain.
+GitHub Pages takes plain A records at the existing registrar, so the subdomains
+are never touched. Cloudflare's edge would be marginally faster for a 52KB
+static site; that is not worth putting the pilot backend at risk.
+
+### DNS records to add (at your current registrar)
+
+Leave every existing record alone. Add only these, for the apex:
+
+```
+A   @   185.199.108.153
+A   @   185.199.109.153
+A   @   185.199.110.153
+A   @   185.199.111.153
+```
+
+Optionally `CNAME www <user>.github.io`.
+
+**Do not touch** `app-api` or `supplyo-api`. After the records propagate,
+confirm nothing moved:
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' https://app-api.code-extreme.com/actuator/health   # 200
+```
+
+### One-time setup
+
+1. Push this repo to GitHub.
+2. Settings → Pages → Source: **GitHub Actions**.
+3. Settings → Pages → Custom domain: `code-extreme.com`; tick **Enforce HTTPS**
+   once the certificate is issued (can take a few minutes).
 
 ## Not built yet
 
