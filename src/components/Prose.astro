@@ -1,0 +1,40 @@
+---
+/*
+ * Long-form legal copy. Tailwind's typography plugin is deliberately not a
+ * dependency — these are two pages, and the rules that matter here are few.
+ */
+---
+<div class="prose-legal">
+  <slot />
+</div>
+<style is:global>
+  .prose-legal h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-brand);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-legal h3 {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-legal p, .prose-legal li { color: var(--color-ink-soft); line-height: 1.75; }
+  .prose-legal p { margin-bottom: 1rem; }
+  .prose-legal ul { list-style: disc; padding-inline-start: 1.5rem; margin-bottom: 1rem; }
+  .prose-legal li { margin-bottom: 0.4rem; }
+  .prose-legal strong { color: var(--color-ink); font-weight: 700; }
+  .prose-legal a { color: var(--color-accent); text-decoration: underline; }
+  .prose-legal table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.925rem; }
+  .prose-legal th, .prose-legal td {
+    border: 1px solid var(--color-rule);
+    padding: 0.6rem 0.75rem;
+    text-align: start;
+    vertical-align: top;
+  }
+  .prose-legal th { background: var(--color-surface-sunken); color: var(--color-ink); font-weight: 700; }
+  .prose-legal td { color: var(--color-ink-soft); }
+</style>

@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/*
+ * Ember & Slate — lifted verbatim from the SupplyO app's own token set
+ * (h2ogo-app/docs/mobile_design_guidelines_v1.md §2). The site shares the
+ * product's identity rather than inventing a second one: a supplier who opens
+ * the app after reading this page should recognise it.
+ */
+@theme {
+  --color-ink: #1A1D21;
+  --color-ink-soft: #565E66;
+  --color-surface: #F8F8F7;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-sunken: #EFEFEE;
+  --color-rule: #DFE0DF;
+  --color-brand: #2A4A5C;
+  --color-brand-strong: #1E3646;
+  --color-accent: #E2571C;
+  --color-accent-ink: #2A0F04;
+  --color-accent-soft: #FBE4D7;
+  --color-good: #2E8B57;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /*
+   * Naskh, not Nastaliq. The design doc still names Nastaliq, but the app moved
+   * off it deliberately (h2ogo-app commit a3e05ea) — Nastaliq renders visibly
+   * larger at the same size and breaks alignment. Match the app.
+   */
+  --font-urdu: "Noto Naskh Arabic", "Noto Naskh Arabic UI", serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--color-surface); color: var(--color-ink); font-family: var(--font-sans); }
+
+/* Urdu pages set dir="rtl" on <html>; this carries the face and a looser
+   line-height, since Arabic-script diacritics need the vertical room. */
+[lang="ur"] body { font-family: var(--font-urdu); line-height: 1.9; }

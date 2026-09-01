@@ -1,0 +1,65 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import { site, services } from "../site.config";
+---
+<Base
+  title="CodeExtreme — software built for how the work actually happens"
+  description="CodeExtreme builds enterprise applications, mobile apps, websites and Shopify stores. Makers of SupplyO, the ordering and delivery app for suppliers."
+>
+  <div class="bg-brand-strong">
+    <div class="mx-auto max-w-5xl px-6 py-24">
+      <h1 class="font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+        Software built for how the work<br class="hidden sm:block" /> actually happens.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-white/75">
+        We build the systems that replace the paper register — for businesses where
+        the people using the software are the people doing the work.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/supplyo" class="rounded-lg bg-accent px-6 py-3 font-bold text-accent-ink hover:opacity-90">
+          See SupplyO
+        </a>
+        <a href={`mailto:${site.email}`} class="rounded-lg border border-white/25 px-6 py-3 font-bold text-white hover:bg-white/10">
+          Talk to us
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Section title="What we do">
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {services.map((s) => (
+        <div class="rounded-xl border border-rule bg-surface-raised p-6">
+          <h3 class="font-display text-xl font-bold text-brand">{s.title}</h3>
+          <p class="mt-3 leading-relaxed text-ink-soft">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <div class="border-y border-rule bg-surface-raised">
+    <Section>
+      <p class="font-mono text-sm uppercase tracking-widest text-accent">Our product</p>
+      <h2 class="mt-3 font-display text-3xl font-bold text-brand">SupplyO</h2>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
+        The ordering and delivery app for suppliers — water, gas, milk, chicken,
+        vegetables. Customers order from a directory; the supplier accepts, runs
+        his round, and bills at the door. Built Urdu-first, and free for suppliers.
+      </p>
+      <a href="/supplyo" class="mt-8 inline-block rounded-lg bg-accent px-6 py-3 font-bold text-accent-ink hover:opacity-90">
+        More about SupplyO
+      </a>
+    </Section>
+  </div>
+
+  <Section title="Work with us">
+    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
+      Tell us what you are trying to run better. We will tell you honestly whether
+      software is the answer.
+    </p>
+    <a href={`mailto:${site.email}`} class="mt-6 inline-block font-mono text-lg text-accent underline">
+      {site.email}
+    </a>
+  </Section>
+</Base>

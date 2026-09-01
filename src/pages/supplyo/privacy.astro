@@ -1,0 +1,125 @@
+---
+import Base from "../../layouts/Base.astro";
+import Prose from "../../components/Prose.astro";
+import { site } from "../../site.config";
+
+/*
+ * Written against what the app actually stores, not from a template. Every row
+ * of the table below maps to a real table in the SupplyO backend. If the schema
+ * gains a new kind of personal data, this page changes in the same commit.
+ */
+const updated = "1 September 2026";
+---
+<Base
+  title="SupplyO — Privacy Policy"
+  description="How SupplyO collects, uses and shares personal information, and how to ask for your data to be deleted."
+>
+  <div class="mx-auto max-w-3xl px-6 py-16">
+    <h1 class="font-display text-4xl font-bold text-brand">SupplyO Privacy Policy</h1>
+    <p class="mt-3 font-mono text-sm text-ink-soft">Last updated: {updated}</p>
+
+    <Prose>
+      <p>
+        SupplyO is operated by <strong>{site.legalName}</strong> ({site.country}).
+        This policy explains what the SupplyO mobile app collects, why, and who
+        else can see it. It applies to both people who use SupplyO: the
+        <strong>supplier</strong> who runs a delivery business, and the
+        <strong>customer</strong> who orders from him.
+      </p>
+
+      <h2>The most important thing to know</h2>
+      <p>
+        <strong>Your supplier can see your information.</strong> When you order
+        from a supplier on SupplyO, that supplier sees your name, phone number,
+        delivery address, what you ordered, what was delivered to you, and what
+        you have paid and still owe. That is the app working as intended — it is
+        how he knows where to deliver and what to charge — but you should know it
+        before you place an order. A supplier only ever sees his own customers.
+      </p>
+
+      <h2>What we collect</h2>
+      <table>
+        <thead>
+          <tr><th>Information</th><th>Why we hold it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Your name</td><td>So your supplier knows whose order and whose bill this is.</td></tr>
+          <tr><td>Your phone number</td><td>It is how you sign in, and how your supplier calls you about an order.</td></tr>
+          <tr><td>Your delivery address and area</td><td>So the supplier can deliver, and so you can find suppliers who cover your area.</td></tr>
+          <tr><td>Your orders and deliveries</td><td>Products, quantities, dates and prices — the record of what was asked for and what arrived.</td></tr>
+          <tr><td>Bills and payments</td><td>What was charged, what was paid, and what is still owed.</td></tr>
+          <tr><td>Notification token</td><td>An identifier from Google that lets us send your phone a notification when your order is answered.</td></tr>
+          <tr><td>Sign-in records</td><td>Session tokens and failed sign-in attempts, so we can keep your account secure.</td></tr>
+        </tbody>
+      </table>
+      <p>
+        We do <strong>not</strong> collect your location, your contacts, your
+        photos, or anything from other apps on your phone.
+      </p>
+
+      <h2>Who else sees it</h2>
+      <ul>
+        <li><strong>Your supplier</strong> — as described above.</li>
+        <li>
+          <strong>Google</strong> — SupplyO uses Firebase Cloud Messaging to
+          deliver notifications, so your notification token and the contents of a
+          notification pass through Google's servers.
+        </li>
+      </ul>
+      <p>
+        That is the complete list. <strong>We do not sell your information</strong>,
+        and SupplyO contains <strong>no advertising and no analytics tracking</strong>
+        — there is no third-party advertising SDK in the app, and Google Analytics
+        is switched off on our Firebase project.
+      </p>
+
+      <h2>How it is protected</h2>
+      <ul>
+        <li>Everything between the app and our servers travels over HTTPS.</li>
+        <li>Passwords are stored only as a one-way hash — nobody at {site.company} can read your password.</li>
+        <li>Sign-in tokens are held in your phone's own encrypted storage.</li>
+        <li>Sign-in attempts are rate-limited to make guessing a password impractical.</li>
+      </ul>
+
+      <h2>How long we keep it, and what deletion means</h2>
+      <p>
+        We want to be straight about this rather than promise something the app
+        does not do.
+      </p>
+      <p>
+        Orders, deliveries, bills and payments are a <strong>business record shared
+        between you and your supplier</strong>. When you ask us to delete your
+        account, we deactivate it and remove your personal details — your name,
+        phone number and address — so you can no longer be identified from them or
+        signed in. <strong>The underlying delivery and payment records are
+        retained</strong> for your supplier's own accounting, because they are also
+        his record of goods he sold and money he is owed, and Pakistani tax rules
+        require him to keep them.
+      </p>
+      <p>
+        If you want your account deleted, use the
+        <a href="/supplyo/delete-account">account deletion request page</a>. We
+        respond within {site.deletionResponseDays} days.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        SupplyO is a tool for running a delivery business and is not directed at
+        children. We do not knowingly create accounts for anyone under 18.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we change what we collect or who we share it with, we will update this
+        page and change the date at the top.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy, or about your information, go to
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
+        {site.address && <> Our postal address is {site.address}.</>}
+      </p>
+    </Prose>
+  </div>
+</Base>
