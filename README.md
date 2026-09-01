@@ -25,19 +25,24 @@ So `/supplyo/privacy` and `/supplyo/delete-account` are not boilerplate — they
 are the two pages the app's release is blocked on. Both must stay reachable
 anonymously; a Play reviewer is not logged into anything.
 
-## ⚠ Before publishing: four placeholder values
+## Business facts live in one file
 
 `src/site.config.ts` holds every factual claim the site makes about the
-business, in one file so the footer, the privacy policy and the deletion page
-can never disagree. Four are placeholders and **the legal pages must not go live
-until they are real**:
+business, so the footer, the privacy policy and the deletion page can never
+disagree. All values are real; one is interim:
 
-| Field | Needs |
-|---|---|
-| `email` | A mailbox that actually receives. Play may write to it; a dead address fails review. |
-| `legalName` | The exact business name as registered on the FBR NTN. |
-| `address` | A postal address, or an explicit decision to publish none (`null`). |
-| `deletionResponseDays` | A window that can genuinely be honoured. |
+- **`email` is still a personal Gmail.** Move it to `hello@code-extreme.com`
+  once the Zoho mailbox exists. A company site answering from a Gmail address is
+  the credibility gap this site was built to close, and Play's developer contact
+  belongs on the domain. It is a one-line change — nothing else references it.
+- **`legalName` ("Code Extreme") is deliberately not `company` ("CodeExtreme").**
+  The first is the entity on the FBR NTN and is what the **Play developer name
+  must match**; the second is the brand in the wordmark. Keep them in step with
+  reality, not with each other.
+- **The published address is a home address**, since a sole proprietorship has no
+  separate premises. Search engines will index it. Set `address: null` to drop it
+  from the site — Play still requires one in the developer profile either way,
+  but that is not the same as publishing it.
 
 ## Design
 
