@@ -65,15 +65,12 @@
   --color-accent: #E2571C;
   --color-accent-ink: #2A0F04;
   --color-accent-soft: #FBE4D7;
-
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   /*
-   * Naskh, not Nastaliq. The design doc still names Nastaliq, but the app moved
-   * off it deliberately (h2ogo-app commit a3e05ea) — Nastaliq renders visibly
-   * larger at the same size and breaks alignment.
+   * Colour only. The product scope deliberately does NOT override the faces:
+   * two type systems on one domain read as two different websites, and Ember &
+   * Slate is already enough to mark SupplyO as its own thing. The app itself
+   * still uses Fraunces and Manrope — this is the website, not the app.
    */
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 html {
@@ -133,4 +130,11 @@ body {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* The decision-row arrow is directional. Mirror it in RTL rather than shipping
+   an arrow that points away from the text it introduces. */
+[dir="rtl"] .reason-arrow {
+  display: inline-block;
+  transform: scaleX(-1);
 }

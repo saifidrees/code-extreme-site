@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Eyebrow from "../../components/Eyebrow.astro";
 import Prose from "../../components/Prose.astro";
 import { site } from "../../site.config";
 
@@ -23,8 +24,9 @@ const body = encodeURIComponent(
   title="SupplyO — Delete your account"
   description="How to request deletion of your SupplyO account and personal information."
 >
-  <div class="mx-auto max-w-3xl px-6 py-16">
-    <h1 class="font-display text-4xl font-bold text-brand">Delete your SupplyO account</h1>
+  <div class="mx-auto max-w-3xl px-6 pt-16 pb-16 md:pt-20">
+    <Eyebrow text="Your account" />
+    <h1 class="display-wide mt-8 text-4xl text-ink sm:text-5xl">Delete your SupplyO account</h1>
 
     <Prose>
       <p>

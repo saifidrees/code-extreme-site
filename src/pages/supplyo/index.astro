@@ -1,13 +1,26 @@
 ---
 import Base from "../../layouts/Base.astro";
-import Section from "../../components/Section.astro";
+import Eyebrow from "../../components/Eyebrow.astro";
+import DecisionRow from "../../components/DecisionRow.astro";
 import { site } from "../../site.config";
 
+/*
+ * Same layout language as the rest of the site — Eyebrow, the display classes,
+ * the decision rows, the section rhythm. Only the colour scope differs, which
+ * is what marks this as the product rather than the practice.
+ */
 const steps = [
-  { n: "1", t: "The order arrives", b: "A customer finds you in the directory and orders. You get a notification — not a phone call you missed." },
-  { n: "2", t: "You accept, or you don't", b: "Accept it, say what you don't have, or change the order after a quick call. Every answer is one tap." },
-  { n: "3", t: "You run the round", b: "Today's orders and your standing customers in one list, with the address on every row." },
-  { n: "4", t: "Bill and collect", b: "Bill at the door for what you delivered. What's owed carries to the next visit." },
+  { claim: "The order arrives", reason: "A customer finds you in the directory and orders. You get a notification, not a phone call you missed." },
+  { claim: "You accept, or you don't", reason: "Accept it, say what you haven't got, or change the order after a call. Every answer is one tap." },
+  { claim: "You run the round", reason: "Today's orders and your standing customers in one list, with the address on every row." },
+  { claim: "Bill and collect", reason: "Bill at the door for what you delivered. What's left owing carries to the next visit." },
+];
+
+const built = [
+  { claim: "In Urdu", reason: "Every screen, in the words people actually use — not a translation of an English app." },
+  { claim: "Works without signal", reason: "Record a delivery in a basement or a back street; it syncs when you come back up. Nothing is entered twice." },
+  { claim: "Your rates, your prices", reason: "One screen each morning for the whole price list — the same one you photograph for the WhatsApp group." },
+  { claim: "You are the seller", reason: "Your customers, your goods, your prices, your money. SupplyO records the work; it takes no cut of it." },
 ];
 ---
 <Base
@@ -15,55 +28,58 @@ const steps = [
   title="SupplyO — take orders, run your round, get paid"
   description="SupplyO is a free Urdu-first app for suppliers. Customers order from a directory; you accept, deliver and bill at the door."
 >
-  <div class="bg-brand-strong">
-    <div class="mx-auto max-w-5xl px-6 py-24">
-      <p class="font-mono text-sm uppercase tracking-widest text-accent">By CodeExtreme</p>
-      <h1 class="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">SupplyO</h1>
-      <p class="mt-6 max-w-2xl text-xl text-white/80">
-        Customers find you. You take the order, deliver it, and get paid.
-        The notebook, but it does the adding up.
-      </p>
-      <p class="mt-8 inline-block rounded-lg bg-accent/15 px-4 py-2 font-bold text-accent">
-        Free for suppliers
-      </p>
-      <p class="mt-8">
-        <a href="/supplyo/ur" class="text-white/70 underline hover:text-white" lang="ur" dir="rtl">
-          یہ صفحہ اردو میں پڑھیں
-        </a>
-      </p>
-    </div>
-  </div>
-
-  <Section title="How it works">
-    <div class="mt-10 grid gap-6 sm:grid-cols-2">
-      {steps.map((s) => (
-        <div class="rounded-xl border border-rule bg-surface-raised p-6">
-          <span class="font-mono text-2xl font-bold text-accent">{s.n}</span>
-          <h3 class="mt-3 font-display text-xl font-bold text-brand">{s.t}</h3>
-          <p class="mt-2 leading-relaxed text-ink-soft">{s.b}</p>
-        </div>
-      ))}
-    </div>
-  </Section>
-
-  <div class="border-y border-rule bg-surface-raised">
-    <Section title="Built for how you already work">
-      <div class="mt-8 space-y-6 text-lg leading-relaxed text-ink-soft">
-        <p><strong class="text-ink">In Urdu.</strong> Every screen, in the words people actually use — not a translation of an English app.</p>
-        <p><strong class="text-ink">Works without signal.</strong> Record a delivery in a basement or a back street; it syncs when you come back up. Nothing is entered twice.</p>
-        <p><strong class="text-ink">You set your own rates.</strong> One screen each morning for the whole price list, the same one you photograph for the WhatsApp group.</p>
-        <p><strong class="text-ink">You are the seller.</strong> Your customers, your goods, your prices, your money. SupplyO records the work — it does not take a cut of it.</p>
-      </div>
-    </Section>
-  </div>
-
-  <Section title="Get SupplyO">
-    <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
-      SupplyO is in pilot in Faisalabad. If you supply water, gas, milk, chicken or
-      vegetables and want it for your round, get in touch.
+  <section class="mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-24">
+    <Eyebrow text="A product by CodeExtreme" />
+    <h1 class="display-wide mt-8 max-w-4xl text-[2.75rem] text-ink sm:text-6xl md:text-7xl">
+      SupplyO
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
+      Customers find you. You take the order, deliver it, and get paid. The same
+      notebook you already keep — except it does the adding up.
     </p>
-    <a href={`mailto:${site.email}`} class="mt-6 inline-block font-mono text-lg text-accent underline">
-      {site.email}
-    </a>
-  </Section>
+    <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <span class="rounded-full bg-accent px-6 py-3 font-medium text-accent-ink">Free for suppliers</span>
+      <a href="/supplyo/ur" lang="ur" dir="rtl" class="text-brand underline decoration-rule-strong underline-offset-4 hover:decoration-brand">
+        یہ صفحہ اردو میں پڑھیں
+      </a>
+    </div>
+  </section>
+
+  <section class="border-t border-rule bg-surface-raised">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <Eyebrow text="How it works" />
+      <div class="mt-12 border-b border-rule">
+        {steps.map((s) => <DecisionRow claim={s.claim} reason={s.reason} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+    <Eyebrow text="Built for how you already work" />
+    <div class="mt-12 border-b border-rule">
+      {built.map((b) => <DecisionRow claim={b.claim} reason={b.reason} />)}
+    </div>
+  </section>
+
+  <section class="border-t border-rule bg-surface-deep text-white">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <p class="anno flex items-center gap-3 text-white/45">
+        <span class="inline-block h-px w-8 bg-white/25" aria-hidden="true"></span>
+        Get SupplyO
+      </p>
+      <h2 class="display-tight mt-8 max-w-3xl text-3xl md:text-4xl">
+        In pilot in Faisalabad.
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+        If you supply water, gas, milk, chicken or vegetables and want it for your
+        round, get in touch.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href={`mailto:${site.email}`} class="rounded-full bg-accent px-6 py-3 font-medium text-accent-ink hover:opacity-90">
+          {site.email}
+        </a>
+        <a href={site.phoneHref} class="font-mono text-white/80 hover:text-white">{site.phone}</a>
+      </div>
+    </div>
+  </section>
 </Base>

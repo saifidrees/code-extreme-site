@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
-import Section from "../../components/Section.astro";
+import Eyebrow from "../../components/Eyebrow.astro";
+import DecisionRow from "../../components/DecisionRow.astro";
 import { site } from "../../site.config";
 
 /*
@@ -9,10 +10,17 @@ import { site } from "../../site.config";
  * Urdu script, and the colloquial verb over the literary one.
  */
 const steps = [
-  { n: "۱", t: "آرڈر آتا ہے", b: "کسٹمر ڈائریکٹری میں آپ کو ڈھونڈ کر آرڈر کرتا ہے۔ آپ کو نوٹیفکیشن آ جاتی ہے — وہ فون کال نہیں جو مِس ہو جائے۔" },
-  { n: "۲", t: "آپ ایکسیپٹ کرتے ہیں، یا نہیں", b: "آرڈر ایکسیپٹ کریں، بتائیں کہ کیا نہیں ہے، یا فون پر بات کر کے آرڈر بدل دیں۔ ہر جواب ایک ٹَیپ۔" },
-  { n: "۳", t: "آپ راؤنڈ لگاتے ہیں", b: "آج کے آرڈر اور آپ کے پکے کسٹمر ایک ہی لسٹ میں، ہر سطر پر ایڈریس کے ساتھ۔" },
-  { n: "۴", t: "بل بنائیں، پیسے لیں", b: "جو ڈیلیور کیا، اسی کا بل دروازے پر۔ جو باقی رہ جائے وہ اگلی بار کے بل میں آ جاتا ہے۔" },
+  { claim: "آرڈر آتا ہے", reason: "کسٹمر ڈائریکٹری میں آپ کو ڈھونڈ کر آرڈر کرتا ہے۔ آپ کو نوٹیفکیشن آ جاتی ہے — وہ فون کال نہیں جو مِس ہو جائے۔" },
+  { claim: "آپ ایکسیپٹ کرتے ہیں، یا نہیں", reason: "آرڈر ایکسیپٹ کریں، بتائیں کہ کیا نہیں ہے، یا فون پر بات کر کے آرڈر بدل دیں۔ ہر جواب ایک ٹَیپ۔" },
+  { claim: "آپ راؤنڈ لگاتے ہیں", reason: "آج کے آرڈر اور آپ کے پکے کسٹمر ایک ہی لسٹ میں، ہر سطر پر ایڈریس کے ساتھ۔" },
+  { claim: "بل بنائیں، پیسے لیں", reason: "جو ڈیلیور کیا، اسی کا بل دروازے پر۔ جو باقی رہ جائے وہ اگلی بار کے بل میں آ جاتا ہے۔" },
+];
+
+const built = [
+  { claim: "اردو میں", reason: "ہر سکرین، انہی الفاظ میں جو لوگ بولتے ہیں — کسی انگریزی ایپ کا ترجمہ نہیں۔" },
+  { claim: "سگنل کے بغیر بھی چلتی ہے", reason: "تہہ خانے یا گلی میں ڈیلیوری ریکارڈ کریں، سگنل آتے ہی چلی جاتی ہے۔ کوئی چیز دو بار نہیں لگتی۔" },
+  { claim: "ریٹ آپ کے اپنے", reason: "ہر صبح ایک سکرین پر پوری ریٹ لسٹ — وہی جو آپ واٹس ایپ گروپ میں بھیجتے ہیں۔" },
+  { claim: "بیچنے والے آپ ہیں", reason: "آپ کے کسٹمر، آپ کا سامان، آپ کے ریٹ، آپ کے پیسے۔ ایپ صرف کام کا حساب رکھتی ہے، اس میں سے حصہ نہیں لیتی۔" },
 ];
 ---
 <Base
@@ -21,55 +29,58 @@ const steps = [
   title="SupplyO — آرڈر لیں، راؤنڈ لگائیں، پیسے لیں"
   description="SupplyO سپلائرز کے لیے فری ایپ ہے۔ کسٹمر ڈائریکٹری سے آرڈر کرتے ہیں، آپ ایکسیپٹ کرتے ہیں، ڈیلیور کرتے ہیں اور دروازے پر بل بناتے ہیں۔"
 >
-  <div class="bg-brand-strong">
-    <div class="mx-auto max-w-5xl px-6 py-24">
-      <p class="text-sm text-accent">CodeExtreme کی طرف سے</p>
-      <h1 class="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl" dir="ltr">SupplyO</h1>
-      <p class="mt-6 max-w-2xl text-xl leading-loose text-white/80">
-        کسٹمر آپ کو ڈھونڈتے ہیں۔ آپ آرڈر لیتے ہیں، ڈیلیور کرتے ہیں، اور پیسے لیتے ہیں۔
-        وہی پرانا کھاتہ، مگر حساب خود کرتا ہے۔
-      </p>
-      <p class="mt-8 inline-block rounded-lg bg-accent/15 px-4 py-2 font-bold text-accent">
-        سپلائرز کے لیے فری
-      </p>
-      <p class="mt-8">
-        <a href="/supplyo" class="text-white/70 underline hover:text-white" lang="en" dir="ltr">
-          Read this page in English
-        </a>
-      </p>
-    </div>
-  </div>
-
-  <Section title="یہ کیسے کام کرتی ہے">
-    <div class="mt-10 grid gap-6 sm:grid-cols-2">
-      {steps.map((s) => (
-        <div class="rounded-xl border border-rule bg-surface-raised p-6">
-          <span class="text-2xl font-bold text-accent">{s.n}</span>
-          <h3 class="mt-3 text-xl font-bold text-brand">{s.t}</h3>
-          <p class="mt-2 leading-loose text-ink-soft">{s.b}</p>
-        </div>
-      ))}
-    </div>
-  </Section>
-
-  <div class="border-y border-rule bg-surface-raised">
-    <Section title="آپ جیسے کام کرتے ہیں، ویسی ہی بنائی ہے">
-      <div class="mt-8 space-y-6 text-lg leading-loose text-ink-soft">
-        <p><strong class="text-ink">اردو میں۔</strong> ہر سکرین، انہی الفاظ میں جو لوگ بولتے ہیں — کسی انگریزی ایپ کا ترجمہ نہیں۔</p>
-        <p><strong class="text-ink">سگنل کے بغیر بھی چلتی ہے۔</strong> تہہ خانے یا گلی میں ڈیلیوری ریکارڈ کریں، سگنل آتے ہی چلی جاتی ہے۔ کوئی چیز دو بار نہیں لگتی۔</p>
-        <p><strong class="text-ink">ریٹ آپ کے اپنے۔</strong> ہر صبح ایک سکرین پر پوری ریٹ لسٹ — وہی جو آپ واٹس ایپ گروپ میں بھیجتے ہیں۔</p>
-        <p><strong class="text-ink">بیچنے والے آپ ہیں۔</strong> آپ کے کسٹمر، آپ کا سامان، آپ کے ریٹ، آپ کے پیسے۔ ایپ صرف کام کا حساب رکھتی ہے، اس میں سے حصہ نہیں لیتی۔</p>
-      </div>
-    </Section>
-  </div>
-
-  <Section title="SupplyO لیں">
-    <p class="mt-4 max-w-2xl text-lg leading-loose text-ink-soft">
-      SupplyO ابھی فیصل آباد میں پائلٹ پر ہے۔ اگر آپ پانی، گیس، دودھ، چکن یا سبزی
-      سپلائی کرتے ہیں اور اپنے راؤنڈ کے لیے یہ ایپ چاہیے تو رابطہ کریں۔
+  <section class="mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-24">
+    <Eyebrow text="CodeExtreme کی پروڈکٹ" />
+    <h1 class="display-wide mt-8 text-[2.75rem] text-ink sm:text-6xl md:text-7xl" dir="ltr">
+      SupplyO
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-loose text-ink-soft md:text-xl">
+      کسٹمر آپ کو ڈھونڈتے ہیں۔ آپ آرڈر لیتے ہیں، ڈیلیور کرتے ہیں، اور پیسے لیتے
+      ہیں۔ وہی پرانا کھاتہ، مگر حساب خود کرتا ہے۔
     </p>
-    <a href={`mailto:${site.email}`} class="mt-6 inline-block font-mono text-lg text-accent underline" dir="ltr">
-      {site.email}
-    </a>
-  </Section>
+    <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <span class="rounded-full bg-accent px-6 py-3 font-medium text-accent-ink">سپلائرز کے لیے فری</span>
+      <a href="/supplyo" lang="en" dir="ltr" class="text-brand underline decoration-rule-strong underline-offset-4 hover:decoration-brand">
+        Read this page in English
+      </a>
+    </div>
+  </section>
+
+  <section class="border-t border-rule bg-surface-raised">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <Eyebrow text="یہ کیسے کام کرتی ہے" />
+      <div class="mt-12 border-b border-rule">
+        {steps.map((s) => <DecisionRow claim={s.claim} reason={s.reason} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+    <Eyebrow text="آپ جیسے کام کرتے ہیں، ویسی ہی بنائی ہے" />
+    <div class="mt-12 border-b border-rule">
+      {built.map((b) => <DecisionRow claim={b.claim} reason={b.reason} />)}
+    </div>
+  </section>
+
+  <section class="border-t border-rule bg-surface-deep text-white">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <p class="anno flex items-center gap-3 text-white/45">
+        <span class="inline-block h-px w-8 bg-white/25" aria-hidden="true"></span>
+        SupplyO لیں
+      </p>
+      <h2 class="display-tight mt-8 max-w-3xl text-3xl md:text-4xl">
+        ابھی فیصل آباد میں پائلٹ پر ہے۔
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg leading-loose text-white/70">
+        اگر آپ پانی، گیس، دودھ، چکن یا سبزی سپلائی کرتے ہیں اور اپنے راؤنڈ کے لیے
+        یہ ایپ چاہیے تو رابطہ کریں۔
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href={`mailto:${site.email}`} dir="ltr" class="rounded-full bg-accent px-6 py-3 font-medium text-accent-ink hover:opacity-90">
+          {site.email}
+        </a>
+        <a href={site.phoneHref} dir="ltr" class="font-mono text-white/80 hover:text-white">{site.phone}</a>
+      </div>
+    </div>
+  </section>
 </Base>
