@@ -1,0 +1,101 @@
+---
+import Base from "../../layouts/Base.astro";
+import Prose from "../../components/Prose.astro";
+import { site } from "../../site.config";
+
+/*
+ * The web copy of what the app's own "About & policies" screen says
+ * (mobile/lib/core/screens/policy_screen.dart, strings policyRole* /
+ * policyComplaints* / policyPayments* in app_en.arb). The three middle sections
+ * are deliberately kept word-for-word in step with those strings: the whole
+ * point of the screen is that the answer was on record beforehand rather than
+ * invented during a dispute, and two versions saying slightly different things
+ * would destroy that. If the ARB strings change, change this page too.
+ */
+const updated = "2 September 2026";
+---
+<Base
+  title="SupplyO — Terms of Use"
+  description="What SupplyO is and is not answerable for: the supplier is the seller, complaints about goods go to him, and payments are his to collect."
+>
+  <div class="mx-auto max-w-3xl px-6 py-16">
+    <h1 class="font-display text-4xl font-bold text-brand">SupplyO Terms of Use</h1>
+    <p class="mt-3 font-mono text-sm text-ink-soft">Last updated: {updated}</p>
+
+    <Prose>
+      <p>
+        These terms apply to everyone using SupplyO, whether you are a supplier
+        running a delivery business or a customer ordering from one. They are the
+        same words shown inside the app under <strong>About &amp; policies</strong>.
+        By using SupplyO you accept them.
+      </p>
+
+      <h2>What SupplyO does</h2>
+      <p>
+        SupplyO is operated by {site.legalName}. It records orders, deliveries and
+        bills. It does not sell, pack or deliver anything. The supplier you order
+        from is the seller — the goods, their quality, weight and price are his,
+        and your agreement is with him.
+      </p>
+
+      <h2>Complaints about goods</h2>
+      <p>
+        If something delivered is wrong — short weight, poor quality, the wrong
+        item, or a price you did not agree — speak to your supplier directly. His
+        number is on his profile under My suppliers. SupplyO cannot inspect goods,
+        and does not settle disputes, replace items or issue refunds.
+      </p>
+
+      <h2>Payments</h2>
+      <p>
+        You pay the supplier, never SupplyO. The app only records the payments your
+        supplier enters, so a bill here is his account of what is owed, not a demand
+        from us. If a payment you made is missing from your bill, tell your supplier.
+      </p>
+
+      <h2>Your account</h2>
+      <p>
+        Your phone number identifies you and is how you sign in. Keep your password
+        to yourself — anyone who has it can place orders in your name. Tell us at
+        <a href={`mailto:${site.email}`}>{site.email}</a> if you think someone else
+        has got into your account.
+      </p>
+      <p>
+        Do not use SupplyO to place orders you do not intend to accept, to enter
+        information about people who have not agreed to it, or to attempt to reach
+        another supplier's or customer's records. We may suspend an account that does.
+      </p>
+
+      <h3>If you are a supplier</h3>
+      <p>
+        You are the seller. The rates you publish, the goods you deliver and the
+        bills you raise are yours, as is your responsibility to the customer and for
+        your own tax and licensing obligations. You see personal information about
+        your customers in order to serve them; use it for that and nothing else, and
+        see the <a href="/supplyo/privacy">privacy policy</a> for what that means.
+      </p>
+
+      <h2>Availability</h2>
+      <p>
+        SupplyO is provided as it is. We try to keep it running and accurate, but we
+        cannot promise it will always be available or free of faults, and it is not a
+        substitute for your own records. Nothing here limits any right you have under
+        Pakistani law that cannot be excluded.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        We may update these terms. Significant changes will be shown in the app and
+        the date above will change.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        {site.legalName}
+        {site.address && <>, {site.address}</>}.
+        <br />
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </Prose>
+  </div>
+</Base>
