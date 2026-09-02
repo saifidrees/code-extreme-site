@@ -13,7 +13,7 @@ const demonstrates = [
   {
     title: "Offline-first, and safe to retry",
     body:
-      "Deliveries are recorded in basements and back streets with no signal, queued on the device, and replayed when it returns. Every write carries a client-generated key, so a replay that already landed is recognised instead of duplicated — the difference between a resilient system and one that double-bills.",
+      "Deliveries are recorded in basements and back streets with no signal, queued on the device, and replayed when it returns. Every write carries a client-generated key, so a replay that already landed is recognised instead of duplicated. That is the difference between a resilient system and one that double-bills.",
   },
   {
     title: "Money that cannot drift",
@@ -23,12 +23,12 @@ const demonstrates = [
   {
     title: "Four roles, one codebase",
     body:
-      "Platform admin, supplier, delivery helper and customer each see a different application, enforced at the API rather than hidden in the interface. A helper assigned to the evening round cannot read the morning's orders.",
+      "Platform admin, supplier, delivery helper and customer each see a different application, enforced at the API and not merely hidden in the interface. A helper assigned to the evening round cannot read the morning's orders.",
   },
   {
     title: "Urdu-first, not translated",
     body:
-      "Right-to-left throughout, written in the register people actually speak rather than rendered word-for-word from English. Every string goes through localisation — including the push notifications, which carry a type code the app turns into language, so no English prose can reach the screen.",
+      "Right-to-left throughout, written in the register people actually speak, not rendered word-for-word from English. Every string goes through localisation, including the push notifications: those carry a type code the app turns into language, so no English prose can reach the screen.",
   },
 ];
 ---
@@ -54,8 +54,8 @@ const demonstrates = [
         <span class="anno rounded-full border border-rule-strong px-3 py-1">In pilot · Faisalabad</span>
       </div>
       <p class="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
-        An ordering and delivery app for suppliers — water, gas, milk, chicken,
-        vegetables. Customers find a supplier and order; the supplier accepts,
+        An ordering and delivery app for suppliers: water, gas, milk, chicken,
+        vegetables. Customers find a supplier and order, the supplier accepts,
         runs his round and bills at the door. Android, Flutter, Spring Boot and
         Postgres, free for the suppliers using it.
       </p>

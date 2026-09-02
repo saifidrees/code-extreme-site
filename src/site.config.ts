@@ -41,7 +41,7 @@ export const services = [
     title: "Backend systems and APIs",
     lead: "Java, Spring Boot, PostgreSQL.",
     body:
-      "The server, the schema and the API that everything else depends on. Thirteen years of it, mostly as the only developer on the system — which means the data model, the endpoints and the deployment were all decided by someone who had to live with them afterwards.",
+      "The server, the schema and the API that everything else depends on. Thirteen years of it, mostly as the only developer on the system. The data model, the endpoints and the deployment all get decided by the person who then has to live with them.",
     detail: [
       "Domain and database modelling built to outlast the first three feature requests",
       "REST APIs consumed by web and mobile clients",
@@ -53,7 +53,7 @@ export const services = [
     title: "Systems integration",
     lead: "Making software talk to software it was never designed to meet.",
     body:
-      "Connecting the systems a business already runs — CRM, ERP, identity, payments, email automation — so data moves between them without someone re-keying it. Usually the least glamorous part of a project and the part most likely to sink it.",
+      "Connecting the systems a business already runs: CRM, ERP, identity, payments, email automation. The point is that data moves between them without anyone re-keying it. Usually the least glamorous part of a project, and the part most likely to sink it.",
     detail: [
       "ERP and CRM integration (ERPNext, Zoho)",
       "National identity and authentication providers (BankID / GrandID)",
@@ -65,7 +65,7 @@ export const services = [
     title: "Workflow and line-of-business platforms",
     lead: "The system an operation would stop without.",
     body:
-      "Approval chains, case management, scheduling, document tracking — processes that currently live in email threads and spreadsheets, turned into something with a state machine behind it and a record of who did what.",
+      "Approval chains, case management, scheduling, document tracking. Processes that live in email threads and spreadsheets today, turned into something with a state machine behind it and a record of who did what.",
     detail: [
       "Business process and approval workflows (jBPM)",
       "Case and document management with full history",
@@ -77,7 +77,7 @@ export const services = [
     title: "Architecture review and AI-code audit",
     lead: "You shipped it with AI tools. Now you need to know what it will cost you.",
     body:
-      "An independent read of a codebase built quickly — often by a founder using AI coding tools — before it scales past the point where problems are cheap. What is sound, what is fragile, what will fail under load or audit, and what to fix in what order.",
+      "An independent read of a codebase built fast, often by a founder using AI coding tools, before it scales past the point where problems are cheap. What is sound, what is fragile, what will fail under load or audit, and what to fix in what order.",
     detail: [
       "API design, data model and architecture review",
       "Third-party integration and data-security risk",
@@ -89,7 +89,7 @@ export const services = [
     title: "Mobile and web applications",
     lead: "Android, iOS and the web.",
     body:
-      "Flutter apps built to survive the conditions the work happens in — offline where there is no signal, localised properly where English is a second language. Plus web front-ends and Shopify builds, configured and handed over so your own team can run them.",
+      "Flutter apps built to survive the conditions the work happens in: offline where there is no signal, localised properly where English is a second language. Plus web front-ends and Shopify builds, configured and handed over so your own team can run them.",
     detail: [
       "Flutter apps for Android and iOS from one codebase",
       "Offline-first with conflict-safe sync",
@@ -126,7 +126,7 @@ export const howIWork = [
   {
     claim: "Decisions are written down beside the code",
     reason:
-      "Why it works this way, not just that it does — so anyone can pick it up. Including you.",
+      "The reasoning is written down with the code, not only the result. That is what lets anyone pick the work up. Including you.",
   },
   {
     claim: "Fixed scope or a monthly retainer",
