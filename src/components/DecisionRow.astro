@@ -1,0 +1,23 @@
+---
+/*
+ * The site's signature device: a claim, and the reason for it.
+ *
+ * It is structural rather than decorative — the reader is weighing whether
+ * contracting directly is a risk, and "what I do / why I do it" is the actual
+ * argument. Deliberately not numbered: these are not a sequence, and 01/02/03
+ * would assert an order the content does not have.
+ */
+interface Props {
+  claim: string;
+  reason: string;
+}
+const { claim, reason } = Astro.props;
+---
+<div class="group grid gap-3 border-t border-rule py-7 md:grid-cols-12 md:gap-8">
+  <h3 class="display-tight text-xl text-ink md:col-span-5 md:text-2xl">
+    {claim}
+  </h3>
+  <p class="text-ink-soft md:col-span-7 md:pt-1">
+    <span class="mr-2 font-mono text-brand select-none" aria-hidden="true">&rarr;</span>{reason}
+  </p>
+</div>

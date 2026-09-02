@@ -1,0 +1,93 @@
+---
+import Base from "../layouts/Base.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import { site } from "../site.config";
+
+/*
+ * SupplyO stands in for a portfolio the site deliberately does not have: client
+ * work is unnamed while it is under contract, so the argument is made with the
+ * one system that is entirely mine to describe. Each line below is a real
+ * property of the shipped app, not a capability claim.
+ */
+const demonstrates = [
+  {
+    title: "Offline-first, and safe to retry",
+    body:
+      "Deliveries are recorded in basements and back streets with no signal, queued on the device, and replayed when it returns. Every write carries a client-generated key, so a replay that already landed is recognised instead of duplicated — the difference between a resilient system and one that double-bills.",
+  },
+  {
+    title: "Money that cannot drift",
+    body:
+      "Prices are snapshotted onto each delivery at the moment it happens, and rate tables are append-only. A correction is a new record, never an edit. An invoice can therefore never disagree with the history it was derived from.",
+  },
+  {
+    title: "Four roles, one codebase",
+    body:
+      "Platform admin, supplier, delivery helper and customer each see a different application, enforced at the API rather than hidden in the interface. A helper assigned to the evening round cannot read the morning's orders.",
+  },
+  {
+    title: "Urdu-first, not translated",
+    body:
+      "Right-to-left throughout, written in the register people actually speak rather than rendered word-for-word from English. Every string goes through localisation — including the push notifications, which carry a type code the app turns into language, so no English prose can reach the screen.",
+  },
+];
+---
+<Base
+  title="Products — CodeExtreme"
+  description="SupplyO: an ordering and delivery app for suppliers, built Urdu-first and running in pilot in Faisalabad."
+>
+  <section class="mx-auto max-w-6xl px-6 pt-16 pb-14 md:pt-24">
+    <Eyebrow text="Products" />
+    <h1 class="display-wide mt-8 max-w-3xl text-4xl text-ink sm:text-5xl md:text-6xl">
+      What I have built for myself.
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+      Client work stays unnamed while it is under contract. My own product does
+      not, so this is the part of my engineering you can inspect.
+    </p>
+  </section>
+
+  <section class="border-y border-rule bg-surface-raised">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+        <h2 class="display-wide text-4xl text-brand md:text-5xl">SupplyO</h2>
+        <span class="anno rounded-full border border-rule-strong px-3 py-1">In pilot · Faisalabad</span>
+      </div>
+      <p class="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
+        An ordering and delivery app for suppliers — water, gas, milk, chicken,
+        vegetables. Customers find a supplier and order; the supplier accepts,
+        runs his round and bills at the door. Android, Flutter, Spring Boot and
+        Postgres, free for the suppliers using it.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+        <a href="/supplyo" class="rounded-full bg-brand px-6 py-3 font-medium text-white hover:bg-brand-strong">
+          Visit SupplyO
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+    <Eyebrow text="What it demonstrates" />
+    <div class="mt-12 grid gap-x-12 gap-y-12 md:grid-cols-2">
+      {demonstrates.map((d) => (
+        <div class="border-t border-rule pt-7">
+          <h3 class="display-tight text-xl text-ink md:text-2xl">{d.title}</h3>
+          <p class="mt-4 leading-relaxed text-ink-soft">{d.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-rule">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <h2 class="display-tight max-w-3xl text-3xl text-ink md:text-4xl">
+        Want this kind of thing built for your operation?
+      </h2>
+      <a
+        href={`mailto:${site.email}`}
+        class="mt-8 inline-block rounded-full bg-accent px-7 py-3.5 font-medium text-accent-ink hover:opacity-90"
+      >Start a conversation</a>
+    </div>
+  </section>
+</Base>

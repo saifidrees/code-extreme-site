@@ -23,6 +23,8 @@ export const site = {
    * the domain too. One-line change; nothing else references the address.
    */
   email: "sidrees.idrees@gmail.com",
+  phone: "+92 315 7462554",
+  phoneHref: "tel:+923157462554",
   address: "106-A Ghalib City, Canal Road, Faisalabad, Pakistan",
   /**
    * 30 days: the recognised standard, and deliberately not shorter. Deletion is
@@ -36,19 +38,106 @@ export const site = {
 
 export const services = [
   {
-    title: "Enterprise applications",
-    body: "Line-of-business systems that replace the spreadsheet and the paper register — built to be run by the people who do the work, not by an IT department.",
+    title: "Backend systems and APIs",
+    lead: "Java, Spring Boot, PostgreSQL.",
+    body:
+      "The server, the schema and the API that everything else depends on. Thirteen years of it, mostly as the only developer on the system — which means the data model, the endpoints and the deployment were all decided by someone who had to live with them afterwards.",
+    detail: [
+      "Domain and database modelling built to outlast the first three feature requests",
+      "REST APIs consumed by web and mobile clients",
+      "Reversible migrations, and a schema that stays readable as it grows",
+      "Authentication, roles, and audit trails",
+    ],
   },
   {
-    title: "Mobile app development",
-    body: "Android and iOS from one Flutter codebase. Offline-first where the work happens away from a signal, and localised properly where English is the second language.",
+    title: "Systems integration",
+    lead: "Making software talk to software it was never designed to meet.",
+    body:
+      "Connecting the systems a business already runs — CRM, ERP, identity, payments, email automation — so data moves between them without someone re-keying it. Usually the least glamorous part of a project and the part most likely to sink it.",
+    detail: [
+      "ERP and CRM integration (ERPNext, Zoho)",
+      "National identity and authentication providers (BankID / GrandID)",
+      "Marketing and transactional email automation (Klaviyo)",
+      "Legacy systems that only speak their own protocol",
+    ],
   },
   {
-    title: "Websites",
-    body: "Fast, accessible sites that load on a mid-range phone over mobile data — the connection most of your customers actually have.",
+    title: "Workflow and line-of-business platforms",
+    lead: "The system an operation would stop without.",
+    body:
+      "Approval chains, case management, scheduling, document tracking — processes that currently live in email threads and spreadsheets, turned into something with a state machine behind it and a record of who did what.",
+    detail: [
+      "Business process and approval workflows (jBPM)",
+      "Case and document management with full history",
+      "Role-based access for office, floor and field",
+      "Reporting the people doing the work will actually open",
+    ],
   },
   {
-    title: "Shopify store setup",
-    body: "Store build, theme work, product and payment configuration, and the handover so your team can run it without us.",
+    title: "Architecture review and AI-code audit",
+    lead: "You shipped it with AI tools. Now you need to know what it will cost you.",
+    body:
+      "An independent read of a codebase built quickly — often by a founder using AI coding tools — before it scales past the point where problems are cheap. What is sound, what is fragile, what will fail under load or audit, and what to fix in what order.",
+    detail: [
+      "API design, data model and architecture review",
+      "Third-party integration and data-security risk",
+      "Findings ranked by what breaks first, not by severity theatre",
+      "Written for a non-technical founder to act on",
+    ],
+  },
+  {
+    title: "Mobile and web applications",
+    lead: "Android, iOS and the web.",
+    body:
+      "Flutter apps built to survive the conditions the work happens in — offline where there is no signal, localised properly where English is a second language. Plus web front-ends and Shopify builds, configured and handed over so your own team can run them.",
+    detail: [
+      "Flutter apps for Android and iOS from one codebase",
+      "Offline-first with conflict-safe sync",
+      "Store submission, signing and release",
+      "Shopify build, theme and payment configuration",
+    ],
+    wide: true,
+  },
+] as const;
+
+/*
+ * The decision log — the site's signature device, and the reason it exists.
+ *
+ * The reader is deciding whether contracting an individual directly is riskier
+ * than going through an agency. Each row is a claim with the reason underneath
+ * it, because "here is what I do and here is why" is the actual argument.
+ * Do not pad this list: every row has to earn the space or the device stops
+ * meaning anything.
+ */
+export const howIWork = [
+  {
+    claim: "You talk to the person writing the code",
+    reason:
+      "No account manager relaying requirements to someone you have not met. The person who scopes it is the person who builds it, so nothing is lost in the retelling.",
+  },
+  {
+    claim: "The code is yours from the first commit",
+    reason:
+      "Work lands in your repository, under your account, not mine. There is nothing to hand over at the end because you already have it.",
+  },
+  {
+    claim: "Decisions are written down where the code is",
+    reason:
+      "Not just what the system does — why it does it that way, and what happened when it did not. It is what lets someone else pick the work up, including you.",
+  },
+  {
+    claim: "One person owns the whole thing",
+    reason:
+      "Data model, API, integrations, deployment and the support years afterwards. Nothing falls into the gap between a front-end team and a back-end team, because there is no gap. Where a project genuinely needs another pair of hands, I say so rather than quietly widening the invoice.",
+  },
+  {
+    claim: "Fixed scope or a monthly retainer",
+    reason:
+      "A defined project with a defined price, or a standing share of my month for continuing work. Both are written down before anything starts.",
+  },
+  {
+    claim: "Five hours ahead of London, ten ahead of New York",
+    reason:
+      "Working from Pakistan. A full overlap with a European morning and a real one with the US East Coast, and I keep to the hours we agree rather than the hours a timezone suggests.",
   },
 ] as const;

@@ -1,39 +1,136 @@
 @import "tailwindcss";
 
 /*
- * Ember & Slate — lifted verbatim from the SupplyO app's own token set
- * (h2ogo-app/docs/mobile_design_guidelines_v1.md §2). The site shares the
- * product's identity rather than inventing a second one: a supplier who opens
- * the app after reading this page should recognise it.
+ * Two brands live on this domain.
+ *
+ * The default scope is CodeExtreme — the practice. The [data-brand="supplyo"]
+ * scope is the product, and carries the SupplyO app's own token set verbatim
+ * (h2ogo-app/docs/mobile_design_guidelines_v1.md §2, "Ember & Slate") so a
+ * supplier who opens the app after reading the page recognises it.
+ *
+ * Tailwind 4 compiles utilities down to var(--color-*), so overriding the
+ * variables inside a scope re-themes every utility without duplicating a single
+ * class. Build against tokens only — a hardcoded hex cannot be re-themed.
  */
+
 @theme {
+  /* ---- CodeExtreme (default) -----------------------------------------
+   * From the real logo and letterhead: #2A5593 blue, #91CDB8 mint.
+   *
+   * The two are NOT interchangeable, and the difference is load-bearing.
+   * Mint on white measures about 1.9:1 — far below the 4.5:1 needed for text —
+   * so it is a GRAPHIC colour only: rules, marks, filled buttons, and type on a
+   * dark ground (mint on the deep blue is ~5.9:1, which is fine).
+   * Blue is the text and interactive colour: ~7.4:1 on the page surface.
+   * If you find yourself writing text-accent on a light background, use
+   * text-brand instead.
+   */
+  --color-ink: #14171C;
+  --color-ink-soft: #55606E;
+  --color-ink-faint: #8A939F;
+  --color-surface: #FAFAFA;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-deep: #1D3D6B;
+  --color-rule: #E3E5E8;
+  --color-rule-strong: #C6CBD2;
+  --color-brand: #2A5593;
+  --color-brand-strong: #1D3D6B;
+  --color-accent: #91CDB8;
+  --color-accent-ink: #14304F;
+  --color-accent-soft: #EAF5F0;
+  --color-good: #2E8B57;
+
+  /* Gabarito: geometric with a little warmth, which sits with the logo's
+     rounded terminals instead of fighting them. Archivo's industrial flatness
+     did fight them. */
+  --font-display: "Gabarito", ui-sans-serif, system-ui, sans-serif;
+  /* Plex was drawn for technical documentation, which is the register here. */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-urdu: "Noto Naskh Arabic", "Noto Naskh Arabic UI", serif;
+}
+
+/* ---- SupplyO product scope — Ember & Slate, unchanged from the app ---- */
+[data-brand="supplyo"] {
   --color-ink: #1A1D21;
   --color-ink-soft: #565E66;
+  --color-ink-faint: #8A9199;
   --color-surface: #F8F8F7;
   --color-surface-raised: #FFFFFF;
-  --color-surface-sunken: #EFEFEE;
+  --color-surface-deep: #1E3646;
   --color-rule: #DFE0DF;
+  --color-rule-strong: #C4C6C4;
   --color-brand: #2A4A5C;
   --color-brand-strong: #1E3646;
   --color-accent: #E2571C;
   --color-accent-ink: #2A0F04;
   --color-accent-soft: #FBE4D7;
-  --color-good: #2E8B57;
 
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
   /*
    * Naskh, not Nastaliq. The design doc still names Nastaliq, but the app moved
    * off it deliberately (h2ogo-app commit a3e05ea) — Nastaliq renders visibly
-   * larger at the same size and breaks alignment. Match the app.
+   * larger at the same size and breaks alignment.
    */
-  --font-urdu: "Noto Naskh Arabic", "Noto Naskh Arabic UI", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-html { scroll-behavior: smooth; }
-body { background: var(--color-surface); color: var(--color-ink); font-family: var(--font-sans); }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
-/* Urdu pages set dir="rtl" on <html>; this carries the face and a looser
-   line-height, since Arabic-script diacritics need the vertical room. */
-[lang="ur"] body { font-family: var(--font-urdu); line-height: 1.9; }
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+}
+
+/* Urdu pages set dir="rtl" on <html>; Arabic-script diacritics need the room. */
+[lang="ur"] body {
+  font-family: var(--font-urdu);
+  line-height: 1.9;
+}
+
+/* Display roles. Width is a deliberate axis here, not a side effect: wide and
+   heavy for the page-defining lines, normal width where it must sit in a
+   column and stay readable. */
+.display-wide {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.display-tight {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+/* The annotation layer — eyebrows, and the reason column of a decision row. */
+.anno {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+/* Quality floor, not decoration. */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

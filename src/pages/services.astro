@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import { site, services } from "../site.config";
+---
+<Base
+  title="Services — CodeExtreme"
+  description="Line-of-business systems, mobile applications, backend and integration work, and web applications. Built and contracted directly."
+>
+  <section class="mx-auto max-w-6xl px-6 pt-16 pb-14 md:pt-24">
+    <Eyebrow text="Services" />
+    <h1 class="display-wide mt-8 max-w-3xl text-4xl text-ink sm:text-5xl md:text-6xl">
+      Four kinds of work.
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+      Most engagements start in the first of these and pull in the others. I would
+      rather tell you a project is the wrong shape than take it and find out later.
+    </p>
+  </section>
+
+  <div class="border-t border-rule">
+    {services.map((s, i) => (
+      <section class:list={["border-b border-rule", i % 2 === 1 && "bg-surface-raised"]}>
+        <div class="mx-auto grid max-w-6xl gap-8 px-6 py-16 md:grid-cols-12 md:py-20">
+          <div class="md:col-span-5">
+            <h2 class="display-tight text-3xl text-brand md:text-4xl">{s.title}</h2>
+            <p class="mt-3 font-mono text-sm text-brand">{s.lead}</p>
+          </div>
+          <div class="md:col-span-7">
+            <p class="text-lg leading-relaxed text-ink-soft">{s.body}</p>
+            <ul class="mt-7 space-y-2.5">
+              {s.detail.map((d) => (
+                <li class="flex gap-3 text-ink-soft">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true"></span>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+    <h2 class="display-tight max-w-3xl text-3xl text-ink md:text-4xl">
+      Not sure which of these you need?
+    </h2>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+      That is a normal place to start. Describe the problem rather than the
+      solution and I will tell you what it would actually take.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <a
+        href={`mailto:${site.email}`}
+        class="rounded-full bg-accent px-7 py-3.5 font-medium text-accent-ink hover:opacity-90"
+      >Start a conversation</a>
+      <a href={site.phoneHref} class="font-mono text-ink hover:text-brand">{site.phone}</a>
+    </div>
+  </section>
+</Base>

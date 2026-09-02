@@ -1,0 +1,8 @@
+---
+interface Props { text: string; }
+const { text } = Astro.props;
+---
+<p class="anno flex items-center gap-3">
+  <span class="inline-block h-px w-8 bg-rule-strong" aria-hidden="true"></span>
+  {text}
+</p>

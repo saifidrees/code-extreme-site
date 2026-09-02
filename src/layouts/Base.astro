@@ -7,53 +7,112 @@ interface Props {
   description: string;
   /** Urdu pages flip the document direction and font; everything else is LTR. */
   lang?: "en" | "ur";
+  /** Which brand's tokens the page renders in. See styles/global.css. */
+  brand?: "codeextreme" | "supplyo";
 }
-const { title, description, lang = "en" } = Astro.props;
+const { title, description, lang = "en", brand = "codeextreme" } = Astro.props;
 const dir = lang === "ur" ? "rtl" : "ltr";
-const home = lang === "ur" ? "/supplyo/ur" : "/";
+const isProduct = brand === "supplyo";
+
+// Each brand loads only its own faces. Serving both would cost every visitor
+// three typefaces they will never see.
+const fonts = isProduct
+  ? "family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Naskh+Arabic:wght@400;600;700"
+  : "family=Gabarito:wght@400..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500";
+
+const nav = isProduct
+  ? [{ href: "/supplyo", label: "SupplyO" }, { href: "/", label: "CodeExtreme" }]
+  : [
+      { href: "/services", label: "Services" },
+      { href: "/products", label: "Products" },
+      { href: "/about", label: "About" },
+    ];
+
+const path = Astro.url.pathname;
 ---
-<html lang={lang} dir={dir}>
+<html lang={lang} dir={dir} data-brand={brand}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap"
-    />
+    <link rel="stylesheet" href={`https://fonts.googleapis.com/css2?${fonts}&display=swap`} />
   </head>
   <body class="flex min-h-screen flex-col">
-    <header class="border-b border-rule bg-surface-raised">
-      <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href={home} class="font-display text-xl font-bold text-brand">
-          Code<span class="text-accent">Extreme</span>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
+    >Skip to content</a>
+
+    <header class="border-b border-rule">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
+        <a href={isProduct ? "/supplyo" : "/"} class="shrink-0">
+          {isProduct ? (
+            <span class="display-tight text-lg text-brand">SupplyO</span>
+          ) : (
+            <span class="flex items-center gap-2.5">
+              <img
+                src="/brand/mark.png"
+                alt=""
+                width="34"
+                height="21"
+                class="h-[21px] w-auto"
+                aria-hidden="true"
+              />
+              <span class="display-wide text-xl text-brand">CodeExtreme</span>
+            </span>
+          )}
         </a>
-        <div class="flex items-center gap-6 text-sm font-medium">
-          <a href="/supplyo" class="text-ink-soft hover:text-accent">SupplyO</a>
-          <a href={`mailto:${site.email}`} class="text-ink-soft hover:text-accent">Contact</a>
+        <div class="flex items-center gap-5 text-sm sm:gap-7">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "hover:text-brand",
+                path.startsWith(item.href) && item.href !== "/"
+                  ? "text-ink"
+                  : "text-ink-soft",
+              ]}
+            >{item.label}</a>
+          ))}
+          <a
+            href={`mailto:${site.email}`}
+            class="hidden rounded-full bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-strong sm:inline-block"
+          >Get in touch</a>
         </div>
       </nav>
     </header>
 
-    <main class="flex-1"><slot /></main>
+    <main id="main" class="flex-1"><slot /></main>
 
-    <footer class="border-t border-rule bg-surface-raised">
-      <div class="mx-auto max-w-5xl px-6 py-10 text-sm text-ink-soft">
-        <div class="flex flex-wrap gap-x-6 gap-y-2">
-          <a href="/supplyo" class="hover:text-accent">SupplyO</a>
-          <a href="/supplyo/privacy" class="hover:text-accent">Privacy</a>
-          <a href="/supplyo/terms" class="hover:text-accent">Terms</a>
-          <a href="/supplyo/delete-account" class="hover:text-accent">Delete your account</a>
-          <a href={`mailto:${site.email}`} class="hover:text-accent">{site.email}</a>
+    <footer class="mt-24 border-t border-rule">
+      <div class="mx-auto max-w-6xl px-6 py-12">
+        <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-ink-soft">
+          <a href="/services" class="hover:text-brand">Services</a>
+          <a href="/products" class="hover:text-brand">Products</a>
+          <a href="/about" class="hover:text-brand">About</a>
+          <a href="/supplyo" class="hover:text-brand">SupplyO</a>
+          <a href="/supplyo/privacy" class="hover:text-brand">Privacy</a>
+          <a href="/supplyo/terms" class="hover:text-brand">Terms</a>
+          <a href="/supplyo/delete-account" class="hover:text-brand">Delete your account</a>
         </div>
-        <p class="mt-6">
-          &copy; {new Date().getFullYear()} {site.legalName}. {site.country}.
-        </p>
+        <div class="mt-8 flex flex-wrap items-end justify-between gap-4 border-t border-rule pt-8">
+          <p class="text-sm text-ink-soft">
+            {site.legalName} · {site.address ?? site.country}
+            <br />
+            <a href={`mailto:${site.email}`} class="font-mono text-ink hover:text-brand">{site.email}</a>
+            <br />
+            <a href={site.phoneHref} class="font-mono text-ink hover:text-brand">{site.phone}</a>
+          </p>
+          <p class="anno">&copy; {new Date().getFullYear()}</p>
+        </div>
       </div>
     </footer>
   </body>

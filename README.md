@@ -44,6 +44,22 @@ disagree. All values are real; one is interim:
   from the site — Play still requires one in the developer profile either way,
   but that is not the same as publishing it.
 
+## ⚠ Outstanding
+
+**A photograph of Saif for `/about`.** The page renders a marked placeholder
+where it goes; drop the file at `public/brand/saif.jpg` and replace the
+placeholder block in `src/pages/about.astro`. Everything else on that page is
+finished. For a solo practice being weighed up for a direct contract, a face is
+worth more than another paragraph — this is the last real gap on the site.
+
+Also outstanding, lower priority:
+
+- **The contact email is still a personal Gmail.** Moves to the domain when the
+  mailbox exists — one value in `src/site.config.ts`, nothing else references it.
+- **The printed letterhead lists `saif.idrees@codeextreme.com`, which is wrong**
+  (no such mailbox, and the domain is hyphenated). Fix the letterhead, not the
+  site.
+
 ## Design
 
 Colours and type are lifted from the SupplyO app's own token set
