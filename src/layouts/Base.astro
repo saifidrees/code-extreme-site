@@ -22,8 +22,10 @@ const fonts =
   "family=Gabarito:wght@400..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500" +
   (lang === "ur" ? "&family=Noto+Naskh+Arabic:wght@400;600;700" : "");
 
+// The product pages carry no nav list of their own: the left lockup is the
+// product and the right is its attribution, which is the whole hierarchy.
 const nav = isProduct
-  ? [{ href: "/supplyo", label: "SupplyO" }, { href: "/", label: "CodeExtreme" }]
+  ? []
   : [
       { href: "/services", label: "Services" },
       { href: "/products", label: "Products" },
@@ -57,10 +59,13 @@ const path = Astro.url.pathname;
       <nav class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
         <a href={isProduct ? "/supplyo" : "/"} class="shrink-0">
           {isProduct ? (
-            <span class="flex items-center gap-2.5">
-              <img src="/brand/mark.png" alt="" width="34" height="21" class="h-[21px] w-auto" aria-hidden="true" />
-              <span class="display-wide text-xl text-brand">SupplyO</span>
-            </span>
+            /*
+             * Wordmark only. The mint mark is CodeExtreme's logo — setting it
+             * beside the word "SupplyO" says that mark belongs to SupplyO,
+             * which it does not. SupplyO has no mark of its own yet, and
+             * borrowing the parent's is worse than having none.
+             */
+            <span class="display-wide text-xl text-brand">SupplyO</span>
           ) : (
             <span class="flex items-center gap-2.5">
               <img
@@ -87,6 +92,13 @@ const path = Astro.url.pathname;
               ]}
             >{item.label}</a>
           ))}
+          {isProduct && (
+            /* The mark appears here, where it is correctly labelled. */
+            <a href="/" class="flex items-center gap-2 text-sm text-ink-soft hover:text-brand">
+              <img src="/brand/mark.png" alt="" width="28" height="17" class="h-[17px] w-auto" aria-hidden="true" />
+              <span>by CodeExtreme</span>
+            </a>
+          )}
           <a
             href={`mailto:${site.email}`}
             class="hidden rounded-full bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-strong sm:inline-block"
