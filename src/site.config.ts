@@ -23,7 +23,9 @@ export const site = {
    * the domain too. One-line change; nothing else references the address.
    */
   email: "sidrees.idrees@gmail.com",
-  phone: "+92 315 7462554",
+  /* Dashed, matching the letterhead. tel: keeps digits only so the dialler
+     is not asked to parse punctuation. */
+  phone: "+92-315-7462554",
   phoneHref: "tel:+923157462554",
   address: "106-A Ghalib City, Canal Road, Faisalabad, Pakistan",
   /**

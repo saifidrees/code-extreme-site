@@ -46,11 +46,13 @@ disagree. All values are real; one is interim:
 
 ## ⚠ Outstanding
 
-**A photograph of Saif for `/about`.** The page renders a marked placeholder
-where it goes; drop the file at `public/brand/saif.jpg` and replace the
-placeholder block in `src/pages/about.astro`. Everything else on that page is
-finished. For a solo practice being weighed up for a direct contract, a face is
-worth more than another paragraph — this is the last real gap on the site.
+**A photograph of Saif for `/about`.** Drop the file at `public/brand/saif.jpg`
+and set `photo` to that path at the top of `src/pages/about.astro`; the column
+appears on its own. Until then the page shows no placeholder and the bio simply
+runs full width, so the site never looks unfinished to a visitor.
+
+For a solo practice being weighed up for a direct contract, a face is worth more
+than another paragraph. This is the last real gap on the site.
 
 Also outstanding, lower priority:
 
