@@ -1,8 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Eyebrow from "../components/Eyebrow.astro";
-import DecisionRow from "../components/DecisionRow.astro";
-import { site, howIWork } from "../site.config";
+import { site } from "../site.config";
 
 /*
  * Bio and timeline are drawn from Saif's CV. Employment history is his own
@@ -148,23 +147,14 @@ const hasExperience = experience.length > 0;
     </div>
   </section>
 
-  <section class="border-t border-rule bg-surface-raised">
-    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
-      <Eyebrow text="How I work" />
-      <p class="display-tight mt-8 max-w-3xl text-3xl text-ink md:text-4xl">
-        CodeExtreme is how I contract. It is me, and the specialists I bring in
-        when a project needs them.
-      </p>
-      <div class="mt-14 border-b border-rule">
-        {howIWork.map((row) => <DecisionRow claim={row.claim} reason={row.reason} />)}
-      </div>
-    </div>
-  </section>
-
   <section class="mx-auto max-w-6xl px-6 py-20">
     <h2 class="display-tight max-w-3xl text-3xl text-ink md:text-4xl">
       If that is the arrangement you are looking for, say hello.
     </h2>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+      <a href="/#how-i-work" class="text-brand underline decoration-rule-strong underline-offset-4 hover:decoration-brand">How I work</a>
+      sets out what contracting me directly actually involves.
+    </p>
     <a
       href={`mailto:${site.email}`}
       class="mt-8 inline-block font-mono text-lg text-brand underline decoration-2 underline-offset-4 hover:opacity-80"

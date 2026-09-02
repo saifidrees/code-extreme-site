@@ -112,32 +112,28 @@ export const services = [
 export const howIWork = [
   {
     claim: "You talk to the person writing the code",
+    reason: "No account manager in between, and nothing lost in the retelling.",
+  },
+  {
+    claim: "One person owns the whole system",
     reason:
-      "No account manager relaying requirements to someone you have not met. The person who scopes it is the person who builds it, so nothing is lost in the retelling.",
+      "Data model through deployment, and the support years after. Nothing falls between two teams, because there are no two teams.",
   },
   {
     claim: "The code is yours from the first commit",
-    reason:
-      "Work lands in your repository, under your account, not mine. There is nothing to hand over at the end because you already have it.",
+    reason: "It lands in your repository, not mine. Nothing to hand over at the end.",
   },
   {
-    claim: "Decisions are written down where the code is",
+    claim: "Decisions are written down beside the code",
     reason:
-      "Not just what the system does — why it does it that way, and what happened when it did not. It is what lets someone else pick the work up, including you.",
-  },
-  {
-    claim: "One person owns the whole thing",
-    reason:
-      "Data model, API, integrations, deployment and the support years afterwards. Nothing falls into the gap between a front-end team and a back-end team, because there is no gap. Where a project genuinely needs another pair of hands, I say so rather than quietly widening the invoice.",
+      "Why it works this way, not just that it does — so anyone can pick it up. Including you.",
   },
   {
     claim: "Fixed scope or a monthly retainer",
-    reason:
-      "A defined project with a defined price, or a standing share of my month for continuing work. Both are written down before anything starts.",
+    reason: "Priced and agreed before anything starts.",
   },
   {
     claim: "Five hours ahead of London, ten ahead of New York",
-    reason:
-      "Working from Pakistan. A full overlap with a European morning and a real one with the US East Coast, and I keep to the hours we agree rather than the hours a timezone suggests.",
+    reason: "A full overlap with a European morning, and a real one with New York.",
   },
 ] as const;
